@@ -1,0 +1,10 @@
+---
+-
+        vertex: res/Shaders/vertex.glsl
+        fragment: res/Shaders/fragmentA.glsl
+        name : A
+-
+        vertex: res/Shaders/vertex.glsl
+        fragment: res/Shaders/fragmentB.glsl
+        name : B
+...
