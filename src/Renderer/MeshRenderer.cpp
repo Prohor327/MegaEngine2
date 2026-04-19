@@ -1,14 +1,14 @@
 #include "MeshRenderer.h"
 
-MeshRenderer::MeshRenderer(GameObject* gameObject, int baseIndex, int amountIndices, std::string shaderName)
-	: MeshRenderer(gameObject)
+void MeshRenderer::Draw()
 {
-	this->baseIndex = baseIndex;
-	this->amountIndices = amountIndices;
-	this->shaderName = shaderName;
-}
-
-MeshRenderer::MeshRenderer(GameObject* gameObject) : Component(gameObject)
-{
-	shaderName = "asda";
+	if (texture != nullptr)
+	{
+		glActiveTexture(GL_TEXTURE0);
+		shader->setInt("texture1", 0);
+		glBindTexture(GL_TEXTURE_2D, texture->GetId());
+	}
+	glBindVertexArray(model->meshes[0]->Vao);
+	glDrawElements(GL_TRIANGLES, model->meshes[0]->indexCount, GL_UNSIGNED_INT, 0);
+	glBindVertexArray(0);
 }

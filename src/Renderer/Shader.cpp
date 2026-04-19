@@ -17,8 +17,9 @@ std::string getTextFromFile(std::filesystem::path path)
     return result;
 }
 
-Shader::Shader(std::string vertexPath, std::string fragmentPath)
+Shader::Shader(std::string name, std::string vertexPath, std::string fragmentPath)
 {
+    _name = name;
     load(vertexPath, fragmentPath);
 }
 
@@ -52,8 +53,8 @@ void Shader::load(std::string vertexPath, std::string fragmentPath)
 {
     unsigned int vs = compileShader(GL_VERTEX_SHADER, getTextFromFile(vertexPath).c_str(), "VERTEX");
     unsigned int fs = compileShader(GL_FRAGMENT_SHADER, getTextFromFile(fragmentPath).c_str(), "FRAGMENT");
-    textShader1 = getTextFromFile(vertexPath);
-    textShader2 = getTextFromFile(fragmentPath);
+    std::string textShader1 = getTextFromFile(vertexPath);
+    std::string textShader2 = getTextFromFile(fragmentPath);
 
     _id = glCreateProgram();
     glAttachShader(_id, vs);
@@ -84,18 +85,17 @@ void Shader::use()
 
 void Shader::setBool(const std::string& name, bool value) 
 {
-    glUniform1i(glGetUniformLocation(_id, name.c_str()), (int)value); 
+    glUniform1i(glGetUniformLocation(_id, name.c_str()), value); 
 }
 
 void Shader::setInt(const std::string& name, int value) 
 {
-    glUniform1i(glGetUniformLocation(_id, name.c_str()), (int)value); 
-    std::cout << glGetError() << std::endl;
+    glUniform1i(glGetUniformLocation(_id, name.c_str()), value); 
 }
 
 void Shader::setFloat(const std::string& name, float value) 
 {
-    glUniform1i(glGetUniformLocation(_id, name.c_str()), (int)value); 
+    glUniform1f(glGetUniformLocation(_id, name.c_str()), value);
 }
 
 void Shader::setMat4(const std::string& name, glm::mat4 value) 
@@ -113,6 +113,11 @@ void Shader::setVec2(const std::string& name, const glm::vec2& value)
     glUniform2fv(glGetUniformLocation(_id, name.c_str()), 1, &value[0]);
 }
 
+std::string Shader::GetName()
+{
+    return _name;
+}
+
 int Shader::GetId()
 {
     return _id;
@@ -120,7 +125,16 @@ int Shader::GetId()
 
 void Shader::log()
 {
-    std::cout << _id << std::endl;
-    std::cout << textShader1 << std::endl;
-    std::cout << textShader2 << std::endl;
+    int success;
+    char infoLog[1024];
+
+    // 1. ???????? ????? ????????? (????????)
+    glGetProgramiv(_id, GL_LINK_STATUS, &success);
+    if (!success) {
+        glGetProgramInfoLog(_id, 1024, NULL, infoLog);
+        std::cerr << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+    else {
+        std::cout << "Shader [ID: " << _id << ", Name: " << _name << "] linked successfully." << std::endl;
+    }
 }

@@ -12,6 +12,7 @@ public:
     Camera(GameObject* gameObject, float fov, float far, float near);
     glm::mat4 GetView();
     glm::mat4 GetProjection();
+    void Update() override;
 
 private:
     float _fov = 90;

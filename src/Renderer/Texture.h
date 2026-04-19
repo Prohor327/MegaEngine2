@@ -5,7 +5,7 @@
 class Texture
 {
 public:
-    Texture(int width, int height, std::string type, std::string path);
+    Texture(std::string type, std::string path);
     void ActiveTexture();
     unsigned int GetId();
 

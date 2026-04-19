@@ -2,22 +2,42 @@
 
 #include"Game/GameObject.h"
 
-struct GameObject;
+class GameObject;
 
 namespace ComponentSystem
 {
 	class Component
 	{
-	private:
-		GameObject* _gameObject = nullptr;
+
+	protected:
+		float* deltaTime = nullptr;
+		GameObject* gameObject;
 
 	public:
-		[readonly] Transform* transform;
+		Transform* transform;
+
 		Component(GameObject* gameObject);
-		virtual ~Component() = default;
+		Component() = default;
+
+		void SetGameObjectPtr(GameObject* gameObject);
 		GameObject* GetGameObjPtr();
+
+		void SetDeltaTimePtr(float* ptr);
+
 		virtual void Start();
 		virtual void Update();
-		Component& GetPtr();
+
+		virtual void OnGameObjectDisable();
+		virtual void OnGameObjectEnable();
+
+		virtual void OnCollisionEnter();
+		virtual void OnCollisionStay();
+		virtual void OnCollisionExit();
+
+		virtual void OnTriggerEnter();
+		virtual void OnTriggerStay();
+		virtual void OnTriggerExit();
+
+		virtual ~Component() = default;
 	};
 }

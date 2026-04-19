@@ -1,127 +1,148 @@
 ﻿---
-Shaders:
-    [
-        A,
-        B
-    ]
-
-Textures:
-    [
-        texture1,
-        texture2
-    ]
-
 Objects:
     obj0:
-        name: Cube
+        Name: Bird
 
-        transforms:
+        Transforms:
             [
                 0.0, 0.0, 0.0,
-                0.0 ,0.0, 180.0,
-                2.0, 2.0, 1.0
+                0.0 ,0.0, 0.0,
+                1.0, 1.0, 1.0
             ]
 
         Components:
             MeshRenderer:
-                shader: A
-                texture: texture1
-                vertices:
-                    [
-                        0.5,  0.5, 0.0,   1.0, 0.0, 0.0,   1.0, 1.0,
-                        0.5, -0.5, 0.0,   0.0, 1.0, 0.0,   1.0, 0.0, 
-                        -0.5, -0.5, 0.0,   0.0, 0.0, 1.0,   0.0, 0.0, 
-                        -0.5,  0.5, 0.0,   1.0, 1.0, 0.0,   0.0, 1.0  
-                    ]
-                indices:
-                    [
-                        0, 1, 3, 1, 2, 3
-                    ] 
-
+                Model: res/Models/bird/bird.obj
+                Texture: res/Textures/bird.png
+                Shader: A
     obj1:
-        name: Small Cube
+        Name: Cow
 
-        transforms:
+        Transforms:
             [
-                0.5, 0.25, 0.0,
-                0.0, 0.0, 0.0,
-                1.5, 1.5, 1.0
-            ] 
+                0.0, 4.0, 0.0,
+                0.0, 90.0, 0.0,
+                0.01, 0.01, 0.01
+            ]
 
         Components:
             MeshRenderer:
-                shader: A
-                texture: texture1
-                vertices:  
-                        0.5,  0.5, 0.0,   1.0, 0.0, 0.0,   1.0, 1.0,
-                        0.5, -0.5, 0.0,   0.0, 1.0, 0.0,   1.0, 0.0,
-                        -0.5,  0.5, 0.0,   1.0, 1.0, 0.0,   0.0, 0.5
-                    ]
-                indices:
+                Model: res/Models/cow/cow.fbx
+                Texture: res/Textures/cow.png
+                Shader: A
+            RigidBody:
+                BodyType: Dynamic
+                Mass: 3.0
+                LinearDamping: 0.01
+                AngularDamping: 0.01
+                GravityEnabled: True
+                FreezeRotation: True
+            BoxCollider:
+                Size:
                     [
-                        4, 5, 6
-                    ]   
-    obj2:
-        name: Camera
+                        2.2, 1.5, 1.0
+                    ]
+                Offset: 
+                    [
+                        -0.2, 0.7, 0.0
+                    ]
+            Scripts:
+                Cow:
+                    speed: 20.0
 
-        transforms:
+    obj2:
+        Name: Rooster
+
+        Transforms:
             [
-                0.0, 0.0, -3.0,
-                0.0, 60.0, -30.0,
-                1.5, 1.5, 1.0
-            ] 
+                5.0, 0.0, 0.0,
+                0.0 ,0.0, 0.0,
+                0.01, 0.01, 0.01
+            ]
 
         Components:
-            Camera:
-                fov: 90.0
-                near: 0.01
-                far: 10.0
+            MeshRenderer:
+                Model: res/Models/rooster/Cock.fbx
+                Texture: res/Textures/rooster.png
+                Shader: A
+            RigidBody:
+                BodyType: Dynamic
+                Mass: 1.0
+                LinearDamping: 0.01
+                AngularDamping: 0.01
+                GravityEnabled: True
+            BoxCollider:
+                Size:
+                    [
+                        1.0, 1.0, 1.0
+                    ]
+                Offset: 
+                    [
+                        0.0, 0.0, 0.0
+                    ]
 
     obj3:
-        name: Camera2
+        Name: Camera1
 
-        transforms:
+        Transforms:
             [
-                -1.0, 2.0, -3.0,
-                0.0, 120.0, -30.0,
-                1.5, 1.5, 1.0
+                0.0, 7.0, 0.0,
+                20.0, -22.0, 50.0,
+                1.0, 1.0, 1.0
             ] 
 
         Components:
             Camera:
-                fov: 90.0
-                near: 0.01
-                far: 10.0
+                Fov: 60.0
+                Near: 0.1
+                Far: 100.0
 
-# Cameras:
-#     Camera0:
-#         fov: 90
-#         near: 0.01
-#         far: 10.0
-#         transforms:
-#             [
-#                 0.0, 0.0, -3.0,
-#                 0.0, 60.0, -30.0,
-#             ]
-#     Camera1:
-#         fov: 180
-#         near: 0.01
-#         far: 10
-#         transforms:
-#             [
-#                 0.0, 0.0, -3.0,
-#                 0.0, 0.0, 0.0,
-#             ] 
+            Scripts:
+                CameraMovement:
+                    speed: 0.01
+                    pitchLimit: 89.0
+                    sens: 2
 
-    # obj2:
-    #     camera:
-    #         fov: 90
-    #         near: 0.01
-    #         far: 10
-    #     transforms:
-    #         [
-    #             0.0, 0.0, -3.0,
-    #             0.0, 0.0, 0.0,
-    #         ] 
+    obj4:
+        Name: PlatformSpawner
 
+        Transforms:
+        [
+            0.0, 0.0, 5.0,
+            0.0, 0.0, 0.0,
+            1.0, 1.0, 1.0
+        ] 
+        Components:
+            Scripts:
+                PlatformSpawner:
+                    platform: "res/Configs/Prefabs/Prefab2.yaml"
+                    lenght: 8.0
+                    player: Cow
+
+    obj5:
+        Name: Box
+
+        Transforms:
+            [
+                5.0, -7.0, 0.0,
+                0.0 ,0.0, 0.0,
+                0.01, 0.01, 0.01
+            ]
+
+        Components:
+            RigidBody:
+                BodyType: Static
+                Mass: 1.0
+                LinearDamping: 0.01
+                AngularDamping: 0.01
+                GravityEnabled: True
+            BoxCollider:
+                Size:
+                    [
+                        10.0, 1.0, 10.0
+                    ]
+                Offset: 
+                    [
+                        0.0, 0.0, 0.0
+                    ]
 ...

@@ -1,0 +1,36 @@
+---
+Objects:
+    obj0:
+        Name: Road
+
+        Transforms:
+            [
+                0.0, 0.0, 0.0,
+                0.0 ,0.0, 0.0,
+                1.0, 1.0, 1.0
+            ]
+
+        Components:
+            MeshRenderer:
+                Model: res/Models/road/road.obj
+                Texture: res/Textures/road.png
+                Shader: A
+            RigidBody:
+                BodyType: Static
+                Mass: 0.0
+                LinearDamping: 0.01
+                AngularDamping: 0.01
+                GravityEnabled: True
+            BoxCollider:
+                Size:
+                    [
+                        5.5, 2.0, 6.0
+                    ]
+                Offset: 
+                    [
+                        0.0, 0.0, 0.0
+                    ]
+            Scripts:
+                Road:
+                    coin: res/Configs/Prefabs/Coin.yaml
+...

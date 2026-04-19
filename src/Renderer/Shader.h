@@ -7,7 +7,7 @@
 class Shader 
 {
 public:
-    Shader(std::string vertexPath, std::string fragmentPath);
+    Shader(std::string name, std::string vertexPath, std::string fragmentPath);
     ~Shader();
     void load(std::string vertexPath, std::string fragmentPath);
     void use();
@@ -18,9 +18,9 @@ public:
     void setVec3(const std::string& name, const glm::vec3& value);
     void setVec2(const std::string& name, const glm::vec2& value);
     int GetId();
+    std::string GetName();
     void log();
 private:
     int _id = 0;
-    std::string textShader1;
-    std::string textShader2;
+    std::string _name;
 };

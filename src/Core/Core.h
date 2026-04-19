@@ -11,11 +11,10 @@ namespace Core {
     void cleanUp();
     
     GLFWwindow* getWindow();
-    void toggleFullscreen();
     bool windowIsOpen();
     int getWindowedWidth();
     int getWindowedHeight();
-    unsigned int getShader();
+    float* getDeltaTimePtr();
     float getDeltaTime();
     void setWindowSize(int width, int heigth);
 

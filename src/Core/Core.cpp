@@ -11,12 +11,13 @@
 
 namespace Core 
 {
+
     GLFWwindow* window;
     GLFWmonitor* monitor;
     int frameCount;
     float deltaTime;
     double previousTime;
-    clock_t start, end;
+    float startFrame;
 
 
     void initalize()
@@ -30,25 +31,34 @@ namespace Core
         glfwSetErrorCallback(errorCallback);
 
         monitor = glfwGetPrimaryMonitor();
-        window = glfwCreateWindow(600, 600, "window", NULL, NULL);
+        window = glfwCreateWindow(1100, 800, "window", NULL, NULL);
 
         CheckError((bool)window, Error::CREATE_WINDOW);
+        glfwSwapInterval(1);
 
         glfwMakeContextCurrent(window);
         glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
         CheckError((bool)gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), Error::LOAD_GLAD);
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
     }
 
     void beginFrame()
     {
-        start = clock();
+        startFrame = static_cast<float>(glfwGetTime());
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     void endFrame()
     {
+        float endFrame = static_cast<float>(glfwGetTime());
+        deltaTime = endFrame - startFrame;
+        if (deltaTime > 0.033f)
+        {
+            deltaTime = 0.033f;
+        }
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -66,6 +76,11 @@ namespace Core
     bool windowIsOpen()
     {
         return glfwWindowShouldClose(window);
+    }
+
+    float* getDeltaTimePtr()
+    {
+        return &deltaTime;
     }
 
     float getDeltaTime()

@@ -1,0 +1,36 @@
+---
+Objects:
+    obj0:
+        Name: Coin
+
+        Transforms:
+            [
+                0.0, 0.0, 0.0,
+                0.0 ,0.0, 0.0,
+                1.0, 1.0, 1.0
+            ]
+
+        Components:
+            MeshRenderer:
+                Model: res/Models/coin/Coin.fbx
+                Texture: res/Textures/coin.jpg
+                Shader: A
+            RigidBody:
+                BodyType: Static
+                Mass: 0.0
+                LinearDamping: 0.01
+                AngularDamping: 0.01
+                GravityEnabled: True
+            BoxCollider:
+                IsTrigger: True
+                Size:
+                    [
+                        1.0, 1.0, 0.5
+                    ]
+                Offset: 
+                    [
+                        0.0, 0.8, 0.0
+                    ]
+            Scripts:
+                Coin:
+...

@@ -6,10 +6,8 @@
 #include <stb/stb_image.h>
 #include <glad/glad.h>
 
-Texture::Texture(int width, int height, std::string type, std::string path)
+Texture::Texture(std::string type, std::string path)
 {
-	_width = width;
-	_height = height;
 	_type = type;
 	_path = path;
 	_nrChannels = 3;
