@@ -59,52 +59,52 @@ bool GameObject::GetActive()
     return _isActive;
 }
 
-void GameObject::OnCollisionEnter()
+void GameObject::OnCollisionEnter(GameObject* gameObject)
 {
     for (const auto& c : _components)
     {
-        c->OnCollisionEnter();
+        c->OnCollisionEnter(gameObject);
     }
 }
 
-void GameObject::OnCollisionStay()
+void GameObject::OnCollisionStay(GameObject* gameObject)
 {
     for (const auto& c : _components)
     {
-        c->OnCollisionStay();
-    }
-}
-
-
-void GameObject::OnCollisionExit()
-{
-    for (const auto& c : _components)
-    {
-        c->OnCollisionExit();
-    }
-}
-
-void GameObject::OnTriggerEnter()
-{
-    for (const auto& c : _components)
-    {
-        c->OnTriggerEnter();
-    }
-}
-
-void GameObject::OnTriggerStay()
-{
-    for (const auto& c : _components)
-    {
-        c->OnTriggerStay();
+        c->OnCollisionStay(gameObject);
     }
 }
 
 
-void GameObject::OnTriggerExit()
+void GameObject::OnCollisionExit(GameObject* gameObject)
 {
     for (const auto& c : _components)
     {
-        c->OnTriggerExit();
+        c->OnCollisionExit(gameObject);
+    }
+}
+
+void GameObject::OnTriggerEnter(GameObject* gameObject)
+{
+    for (const auto& c : _components)
+    {
+        c->OnTriggerEnter(gameObject);
+    }
+}
+
+void GameObject::OnTriggerStay(GameObject* gameObject)
+{
+    for (const auto& c : _components)
+    {
+        c->OnTriggerStay(gameObject);
+    }
+}
+
+
+void GameObject::OnTriggerExit(GameObject* gameObject)
+{
+    for (const auto& c : _components)
+    {
+        c->OnTriggerExit(gameObject);
     }
 }

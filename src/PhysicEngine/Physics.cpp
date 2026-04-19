@@ -19,16 +19,16 @@ void PhysicsEventListener::onContact(const CallbackData& callbackData)
         switch (contactPair.getEventType())
         {
         case ContactPair::EventType::ContactStart:
-            obj1->OnCollisionEnter();
-            obj2->OnCollisionEnter();
+            obj1->OnCollisionEnter(obj2);
+            obj2->OnCollisionEnter(obj1);
             break;
         case ContactPair::EventType::ContactStay:
-            obj1->OnCollisionStay();
-            obj2->OnCollisionStay();
+            obj1->OnCollisionStay(obj2);
+            obj2->OnCollisionStay(obj1);
             break;
         case ContactPair::EventType::ContactExit:
-            obj1->OnCollisionExit();
-            obj2->OnCollisionExit();
+            obj1->OnCollisionExit(obj2);
+            obj2->OnCollisionExit(obj1);
             break;
         }
     }
@@ -46,16 +46,16 @@ void PhysicsEventListener::onTrigger(const rp3d::OverlapCallback::CallbackData &
         switch (overlapPair.getEventType())
         {
         case rp3d::OverlapCallback::OverlapPair::EventType::OverlapStart:
-            obj1->OnTriggerEnter();
-            obj2->OnTriggerEnter();
+            obj1->OnTriggerEnter(obj2);
+            obj2->OnTriggerEnter(obj1);
             break;
         case rp3d::OverlapCallback::OverlapPair::EventType::OverlapStay:
-            obj1->OnTriggerStay();
-            obj2->OnTriggerStay();
+            obj1->OnTriggerStay(obj2);
+            obj2->OnTriggerStay(obj1);
             break;
         case rp3d::OverlapCallback::OverlapPair::EventType::OverlapExit:
-            obj1->OnTriggerExit();
-            obj2->OnTriggerExit();
+            obj1->OnTriggerExit(obj2);
+            obj2->OnTriggerExit(obj1);
             break;
         }
     }

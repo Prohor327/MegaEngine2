@@ -8,7 +8,7 @@ namespace Scripts
 	class Coin : public Scripts::BaseScript
 	{
 	public:
-		void OnTriggerEnter() override;
+		void OnTriggerEnter(GameObject* gameObject) override;
 	};
 
 	ME_REGISTER_SCRIPT(Coin);

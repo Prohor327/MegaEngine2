@@ -3,7 +3,7 @@
 #include "Core.h"
 #include <iostream>
 
-static DebugRenderer _debugRenderer;
+//static DebugRenderer _debugRenderer;
 static Physics _physics;
 static Scene* _activeScene;
 
@@ -16,7 +16,7 @@ void Engine::run()
 {
     Core::initalize();
 
-    _debugRenderer.setup();
+    //_debugRenderer.setup();
 
     Scene* scene = new Scene("Scene1");
     setActiveScene(scene);
@@ -28,7 +28,7 @@ void Engine::run()
 
         _activeScene->Update();
 
-        _debugRenderer.render();
+        //_debugRenderer.render();
 
         Core::endFrame();
     }
@@ -47,7 +47,7 @@ Physics* Engine::getPhysicsPtr()
     return &_physics;
 }
 
-DebugRenderer* Engine::getDebugRendererPtr()
-{
-    return &_debugRenderer;
-}
+//DebugRenderer* Engine::getDebugRendererPtr()
+//{
+//    //return &_debugRenderer;
+//}

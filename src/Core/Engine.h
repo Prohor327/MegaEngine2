@@ -13,5 +13,5 @@ namespace Engine
 
     Scene* getActiveScenePtr();
     Physics* getPhysicsPtr();
-    DebugRenderer* getDebugRendererPtr();
+    //DebugRenderer* getDebugRendererPtr();
 }

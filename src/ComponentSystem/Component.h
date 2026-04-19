@@ -30,13 +30,13 @@ namespace ComponentSystem
 		virtual void OnGameObjectDisable();
 		virtual void OnGameObjectEnable();
 
-		virtual void OnCollisionEnter();
-		virtual void OnCollisionStay();
-		virtual void OnCollisionExit();
+		virtual void OnCollisionEnter(GameObject* gameObject);
+		virtual void OnCollisionStay(GameObject* gameObject);
+		virtual void OnCollisionExit(GameObject* gameObject);
 
-		virtual void OnTriggerEnter();
-		virtual void OnTriggerStay();
-		virtual void OnTriggerExit();
+		virtual void OnTriggerEnter(GameObject* gameObject);
+		virtual void OnTriggerStay(GameObject* gameObject);
+		virtual void OnTriggerExit(GameObject* gameObject);
 
 		virtual ~Component() = default;
 	};

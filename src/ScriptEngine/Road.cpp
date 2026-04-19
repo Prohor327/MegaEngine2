@@ -35,15 +35,11 @@ void Scripts::Road::SpawnCoin(glm::vec3 offset)
             x = -2;
         }
 
-        std::cout << i << " x " << x << " y " << z << std::endl;
+        //std::cout << i << " x " << x << " y " << z << std::endl;
 
         glm::vec3 randomOffset(x, 1.0f, z);
 
         _coins.emplace_back(Engine::getActiveScenePtr()->AddPrefabRuntime(coin, offset + randomOffset).gameObjects[0]->GetComponent<Scripts::Coin>());
-        if (_coins.back()->GetGameObjPtr()->GetComponent<Road>())
-        {
-            std::exit(1);
-        }
     }
 }
 

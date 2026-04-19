@@ -52,18 +52,3 @@ void Scripts::CameraMovement::OnGameObjectEnable()
 	_yaw = transform->rotation.y;
 	_pitch = transform->rotation.x;
 }
-
-void Scripts::CameraMovement::OnCollisionEnter()
-{
-	std::cout << gameObject->name << " OnCollisionEnter" << std::endl;
-}
-
-void Scripts::CameraMovement::OnCollisionStay()
-{
-	std::cout << gameObject->name << " OnCollisionStay" << std::endl;
-}
-
-void Scripts::CameraMovement::OnCollisionExit()
-{
-	std::cout << gameObject->name << " OnCollisionExit" << std::endl;
-}

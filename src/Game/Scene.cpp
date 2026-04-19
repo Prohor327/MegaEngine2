@@ -37,7 +37,7 @@ void Scene::Load(std::string sceneName)
             AddObject(node);
     }
 
-    Engine::getDebugRendererPtr()->setPhysicsWorld(Engine::getPhysicsPtr()->getWorld());
+    //Engine::getDebugRendererPtr()->setPhysicsWorld(Engine::getPhysicsPtr()->getWorld());
     _sceneRenderer.setup(&_meshRenderers);
 }
 
@@ -97,9 +97,9 @@ void Scene::BuildObjectByConfig(const YAML::Node& node, GameObject* gameObject, 
         transform.rotation[j] = node["Transforms"][j + 3].as<float>();
         transform.scale[j] = node["Transforms"][j + 6].as<float>();
 
-        std::cout << "pos" << node["Transforms"][j].as<float>() << "rot" <<
-            node["Transforms"][j + 3].as<float>() << "scale" <<
-            node["Transforms"][j + 6].as<float>() << std::endl;
+        //std::cout << "pos" << node["Transforms"][j].as<float>() << "rot" <<
+        //    node["Transforms"][j + 3].as<float>() << "scale" <<
+        //    node["Transforms"][j + 6].as<float>() << std::endl;
     }
 
     transform.position += offsetPos;
@@ -183,7 +183,7 @@ void Scene::BuildObjectByConfig(const YAML::Node& node, GameObject* gameObject, 
         {
             bodyType = BodyType::Kinematic;
         }
-        std::cout << node["Components"]["RigidBody"] << std::endl;
+        //std::cout << node["Components"]["RigidBody"] << std::endl;
 
         RigidBody& rb = gameObject->AddComponent<RigidBody>(gameObject, bodyType, rigidBodyNode["Mass"].as<float>(),
             rigidBodyNode["LinearDamping"].as<float>(), rigidBodyNode["AngularDamping"].as<float>(),
@@ -212,7 +212,7 @@ void Scene::BuildObjectByConfig(const YAML::Node& node, GameObject* gameObject, 
 
     if (node["Components"]["Scripts"])
     {
-        std::cout << node["Components"]["Scripts"] << std::endl;
+        //std::cout << node["Components"]["Scripts"] << std::endl;
         auto scriptsNode = node["Components"]["Scripts"];
 
         for (auto it : scriptsNode)
@@ -227,7 +227,7 @@ void Scene::BuildObjectByConfig(const YAML::Node& node, GameObject* gameObject, 
                 script->Deserialize(scriptData);
                 script->SetDeltaTimePtr(Core::getDeltaTimePtr());
                 gameObject->AddComponent(std::move(script));
-                std::cout << "Successfully added: " << scriptName << std::endl;
+                //std::cout << "Successfully added: " << scriptName << std::endl;
             }
             else
             {
@@ -252,7 +252,7 @@ Camera* Scene::GetCameraPtr()
         }
     }
 
-    std::cout << "No Active Camera On Scene" << std::endl;
+    //std::cout << "No Active Camera On Scene" << std::endl;
     return nullptr;
 }
 
@@ -271,7 +271,7 @@ void Scene::ClearGarbage()
 {
     for (GameObject* obj : _garbage)
     {
-        std::cout << obj->name << std::endl;
+        //std::cout << obj->name << std::endl;
         _namesObjects.erase(obj->name);
         _cameras.erase(std::remove(_cameras.begin(), _cameras.end(), obj->GetComponent<Camera>()), _cameras.end());
         _meshRenderers.erase(

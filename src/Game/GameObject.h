@@ -61,13 +61,13 @@ public:
     void SetActive(bool state);
     bool GetActive();
 
-    void OnCollisionEnter();
-    void OnCollisionStay();
-    void OnCollisionExit();
+    void OnCollisionEnter(GameObject* gameObject);
+    void OnCollisionStay(GameObject* gameObject);
+    void OnCollisionExit(GameObject* gameObject);
 
-    void OnTriggerEnter();
-    void OnTriggerStay();
-    void OnTriggerExit();
+    void OnTriggerEnter(GameObject* gameObject);
+    void OnTriggerStay(GameObject* gameObject);
+    void OnTriggerExit(GameObject* gameObject);
 
 private:
     std::vector<std::unique_ptr<ComponentSystem::Component>> _components;

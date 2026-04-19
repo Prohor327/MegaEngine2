@@ -41,32 +41,32 @@ void ComponentSystem::Component::OnGameObjectEnable()
 
 }
 
-void ComponentSystem::Component::OnCollisionEnter()
+void ComponentSystem::Component::OnCollisionEnter(GameObject* gameObject)
 {
 
 }
 
-void ComponentSystem::Component::OnCollisionStay()
+void ComponentSystem::Component::OnCollisionStay(GameObject* gameObject)
 {
 
 }
 
-void ComponentSystem::Component::OnCollisionExit()
+void ComponentSystem::Component::OnCollisionExit(GameObject* gameObject)
 {
 
 }
 
-void ComponentSystem::Component::OnTriggerEnter()
+void ComponentSystem::Component::OnTriggerEnter(GameObject* gameObject)
 {
 
 }
 
-void ComponentSystem::Component::OnTriggerStay()
+void ComponentSystem::Component::OnTriggerStay(GameObject* gameObject)
 {
 
 }
 
-void ComponentSystem::Component::OnTriggerExit()
+void ComponentSystem::Component::OnTriggerExit(GameObject* gameObject)
 {
 
 }

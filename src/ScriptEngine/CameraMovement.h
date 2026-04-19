@@ -22,9 +22,6 @@ namespace Scripts
 		void OnGameObjectEnable() override;
 
 	public:
-		void OnCollisionEnter() override;
-		void OnCollisionStay() override;
-		void OnCollisionExit() override;
 	};
 
 	ME_REGISTER_SCRIPT(CameraMovement);
